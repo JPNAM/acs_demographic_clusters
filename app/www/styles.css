@@ -1,0 +1,809 @@
+/* ============================================
+   ACORN Explorer - Apple Glass Inspired Design
+   ============================================ */
+
+/* Import SF Pro-like font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* CSS Variables */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-bg-dark: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --glass-blur: 20px;
+
+  --accent-blue: #007AFF;
+  --accent-purple: #AF52DE;
+  --accent-pink: #FF2D55;
+  --accent-orange: #FF9500;
+  --accent-green: #34C759;
+  --accent-teal: #5AC8FA;
+
+  --text-primary: #1D1D1F;
+  --text-secondary: #86868B;
+  --text-tertiary: #AEAEB2;
+
+  --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  --bg-mesh:
+    radial-gradient(at 40% 20%, hsla(28,100%,74%,0.3) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, hsla(189,100%,56%,0.3) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, hsla(355,100%,93%,0.3) 0px, transparent 50%),
+    radial-gradient(at 80% 50%, hsla(340,100%,76%,0.3) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(22,100%,77%,0.3) 0px, transparent 50%),
+    radial-gradient(at 80% 100%, hsla(242,100%,70%,0.3) 0px, transparent 50%),
+    radial-gradient(at 0% 0%, hsla(343,100%,76%,0.3) 0px, transparent 50%);
+
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+
+  --transition-fast: 0.15s ease;
+  --transition-med: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Global Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  background: var(--bg-mesh), linear-gradient(135deg, #E8E3F3 0%, #EDF1F4 50%, #E2E8F0 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Shiny Container Override */
+.container-fluid {
+  padding: 24px;
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   Glass Card Component
+   ============================================ */
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  padding: 24px;
+  margin-bottom: 20px;
+  transition: transform var(--transition-med), box-shadow var(--transition-med);
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.glass-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.glass-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: white;
+}
+
+.icon-blue { background: linear-gradient(135deg, #007AFF, #5856D6); }
+.icon-purple { background: linear-gradient(135deg, #AF52DE, #5856D6); }
+.icon-pink { background: linear-gradient(135deg, #FF2D55, #FF6B6B); }
+.icon-orange { background: linear-gradient(135deg, #FF9500, #FFCC00); }
+.icon-green { background: linear-gradient(135deg, #34C759, #30D158); }
+.icon-teal { background: linear-gradient(135deg, #5AC8FA, #64D2FF); }
+
+.glass-card-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.glass-card-subtitle {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 4px 0 0 0;
+}
+
+/* ============================================
+   Header / Navigation
+   ============================================ */
+
+.app-header {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  padding: 20px 32px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.app-logo-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.app-title {
+  font-size: 24px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.app-subtitle {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 2px 0 0 0;
+}
+
+/* ============================================
+   Navigation Pills
+   ============================================ */
+
+.nav-pills {
+  display: flex;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 4px;
+  border-radius: var(--radius-md);
+}
+
+.nav-pills .nav-link {
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.nav-pills .nav-link:hover {
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--text-primary);
+}
+
+.nav-pills .nav-link.active {
+  background: white;
+  color: var(--accent-blue);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* ============================================
+   Form Controls - Sliders
+   ============================================ */
+
+.weight-slider-container {
+  margin-bottom: 20px;
+}
+
+.weight-slider-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.weight-slider-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.weight-slider-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-blue);
+  background: rgba(0, 122, 255, 0.1);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+/* Shiny Slider Overrides */
+.irs--shiny {
+  font-family: 'Inter', sans-serif;
+}
+
+.irs--shiny .irs-bar {
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+  border: none;
+  height: 6px;
+  border-radius: 3px;
+}
+
+.irs--shiny .irs-line {
+  background: rgba(0, 0, 0, 0.08);
+  border: none;
+  height: 6px;
+  border-radius: 3px;
+}
+
+.irs--shiny .irs-handle {
+  width: 24px;
+  height: 24px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  cursor: grab;
+  top: 19px;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.irs--shiny .irs-handle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.irs--shiny .irs-handle:active {
+  cursor: grabbing;
+  transform: scale(1.15);
+}
+
+.irs--shiny .irs-single {
+  background: var(--accent-blue);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+}
+
+.irs--shiny .irs-single::before {
+  border-top-color: var(--accent-blue);
+}
+
+.irs--shiny .irs-min,
+.irs--shiny .irs-max {
+  display: none;
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+
+.btn-glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary-glass {
+  background: linear-gradient(135deg, var(--accent-blue), #5856D6);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+}
+
+.btn-primary-glass:hover {
+  background: linear-gradient(135deg, #0066CC, #4B45B2);
+  box-shadow: 0 6px 16px rgba(0, 122, 255, 0.4);
+  color: white;
+}
+
+.btn-success-glass {
+  background: linear-gradient(135deg, var(--accent-green), #30D158);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(52, 199, 89, 0.3);
+}
+
+.btn-success-glass:hover {
+  background: linear-gradient(135deg, #28A745, #28B84A);
+  box-shadow: 0 6px 16px rgba(52, 199, 89, 0.4);
+  color: white;
+}
+
+/* Shiny Button Overrides */
+.btn-default, .btn-primary, .action-button {
+  font-family: 'Inter', sans-serif;
+  border-radius: var(--radius-sm) !important;
+  font-weight: 600 !important;
+  padding: 12px 24px !important;
+  border: none !important;
+  transition: all var(--transition-fast) !important;
+}
+
+.btn-primary, .btn-default.action-button {
+  background: linear-gradient(135deg, var(--accent-blue), #5856D6) !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3) !important;
+}
+
+.btn-primary:hover, .btn-default.action-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4) !important;
+}
+
+/* ============================================
+   Select Inputs
+   ============================================ */
+
+.selectize-control.single .selectize-input {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 12px 16px !important;
+  font-size: 14px !important;
+  box-shadow: none !important;
+  transition: all var(--transition-fast) !important;
+}
+
+.selectize-control.single .selectize-input:focus,
+.selectize-control.single .selectize-input.focus {
+  border-color: var(--accent-blue) !important;
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.15) !important;
+}
+
+.selectize-dropdown {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+  margin-top: 4px !important;
+}
+
+.selectize-dropdown .option {
+  padding: 10px 16px !important;
+  transition: background var(--transition-fast) !important;
+}
+
+.selectize-dropdown .option:hover,
+.selectize-dropdown .option.active {
+  background: rgba(0, 122, 255, 0.1) !important;
+  color: var(--accent-blue) !important;
+}
+
+/* ============================================
+   Data Tables
+   ============================================ */
+
+.dataTables_wrapper {
+  font-family: 'Inter', sans-serif;
+}
+
+table.dataTable {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  width: 100% !important;
+}
+
+table.dataTable thead th {
+  background: rgba(0, 0, 0, 0.02) !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  padding: 14px 16px !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  color: var(--text-secondary) !important;
+}
+
+table.dataTable tbody td {
+  border: none !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
+  padding: 14px 16px !important;
+  font-size: 14px !important;
+  color: var(--text-primary) !important;
+}
+
+table.dataTable tbody tr:hover {
+  background: rgba(0, 122, 255, 0.04) !important;
+}
+
+table.dataTable tbody tr.selected {
+  background: rgba(0, 122, 255, 0.1) !important;
+}
+
+.dataTables_filter input {
+  background: var(--glass-bg) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 10px 16px !important;
+  font-size: 14px !important;
+  transition: all var(--transition-fast) !important;
+}
+
+.dataTables_filter input:focus {
+  border-color: var(--accent-blue) !important;
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.15) !important;
+  outline: none !important;
+}
+
+.dataTables_paginate .paginate_button {
+  border-radius: var(--radius-sm) !important;
+  border: none !important;
+  padding: 8px 14px !important;
+  margin: 0 2px !important;
+  transition: all var(--transition-fast) !important;
+}
+
+.dataTables_paginate .paginate_button.current {
+  background: var(--accent-blue) !important;
+  color: white !important;
+}
+
+.dataTables_paginate .paginate_button:hover:not(.current) {
+  background: rgba(0, 122, 255, 0.1) !important;
+  color: var(--accent-blue) !important;
+}
+
+/* ============================================
+   Charts / Plots
+   ============================================ */
+
+.shiny-plot-output {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* ============================================
+   Progress / Loading
+   ============================================ */
+
+.shiny-notification {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+}
+
+.progress {
+  background: rgba(0, 0, 0, 0.06) !important;
+  border-radius: 10px !important;
+  height: 8px !important;
+  overflow: hidden !important;
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)) !important;
+  border-radius: 10px !important;
+  transition: width var(--transition-med) !important;
+}
+
+/* ============================================
+   Tabs
+   ============================================ */
+
+.nav-tabs {
+  border: none !important;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: var(--radius-md);
+  padding: 4px;
+  display: inline-flex;
+  gap: 4px;
+  margin-bottom: 20px !important;
+}
+
+.nav-tabs > li > a {
+  border: none !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 10px 20px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: var(--text-secondary) !important;
+  background: transparent !important;
+  transition: all var(--transition-fast) !important;
+  margin: 0 !important;
+}
+
+.nav-tabs > li > a:hover {
+  background: rgba(255, 255, 255, 0.5) !important;
+  color: var(--text-primary) !important;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  background: white !important;
+  color: var(--accent-blue) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* ============================================
+   Stats Cards
+   ============================================ */
+
+.stat-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+  padding: 20px;
+  text-align: center;
+  transition: transform var(--transition-med);
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================
+   Domain Weight Cards
+   ============================================ */
+
+.domain-weight-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  transition: all var(--transition-fast);
+}
+
+.domain-weight-card:hover {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 122, 255, 0.2);
+}
+
+.domain-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.domain-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.domain-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.domain-percent {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-blue);
+}
+
+/* ============================================
+   Cluster Badges
+   ============================================ */
+
+.cluster-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 14px;
+  color: white;
+}
+
+.cluster-A { background: #69D2E7; }
+.cluster-B { background: #E0E4CC; color: #333; }
+.cluster-C { background: #B5B5B5; }
+.cluster-D { background: #79BD9A; }
+.cluster-E { background: #F38630; }
+.cluster-F { background: #EDC951; color: #333; }
+.cluster-G { background: #8C8590; }
+.cluster-H { background: #CDB380; }
+.cluster-I { background: #547980; }
+.cluster-J { background: #4ECDC4; }
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 1200px) {
+  .container-fluid {
+    padding: 16px;
+  }
+
+  .glass-card {
+    padding: 20px;
+  }
+
+  .app-header {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-title {
+    font-size: 20px;
+  }
+
+  .nav-pills {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .stat-value {
+    font-size: 24px;
+  }
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.loading-pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* ============================================
+   Well Overrides
+   ============================================ */
+
+.well {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(var(--glass-blur)) !important;
+  -webkit-backdrop-filter: blur(var(--glass-blur)) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--glass-shadow) !important;
+  padding: 24px !important;
+}
+
+/* ============================================
+   Shiny Output Containers
+   ============================================ */
+
+.shiny-html-output {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Value Boxes */
+.small-box {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--glass-shadow) !important;
+}
+
+/* ============================================
+   Scrollbar Styling
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   Export Button Special Styling
+   ============================================ */
+
+.export-btn-container {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.export-btn {
+  flex: 1;
+  min-width: 200px;
+}
